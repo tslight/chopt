@@ -22,33 +22,33 @@ def insert_range(element, inputs, options, nums):
 
 def get_ranges(inputs, options):
     '''
-    Find any numeric ranges in a list. A numeric range is defined as two numbers
-    separated either by two periods or a dash.
+    Find any numeric ranges in a list. A numeric range is defined as two
+    numbers separated either by two periods or a dash.
 
     If we find a numeric range element, use list comprehension to extract the
     integers, remove the original element, and then insert a new element for
     every number in that range back into the original list.
     '''
     for i in inputs:
-        if re.match('^\d+\.\.\d+$', i):
+        if re.match('^\\d+\\.\\.\\d+$', i):
             nums = [int(n) for n in i.split("..") if n.isdigit()]
             inputs = insert_range(i, inputs, options, nums)
-        elif re.match('^\d+\.\.$', i):
+        elif re.match('^\\d+\\.\\.$', i):
             nums = [int(n) for n in i.split("..") if n.isdigit()]
             nums.append(len(options))
             inputs = insert_range(i, inputs, options, nums)
-        elif re.match('^\.\.\d+$', i):
+        elif re.match('^\\.\\.\\d+$', i):
             nums = [int(n) for n in i.split("..") if n.isdigit()]
             nums.insert(0, 1)
             inputs = insert_range(i, inputs, options, nums)
-        elif re.match('^\d+-\d+$', i):
+        elif re.match('^\\d+-\\d+$', i):
             nums = [int(n) for n in i.split("-") if n.isdigit()]
             inputs = insert_range(i, inputs, options, nums)
-        elif re.match('^\d+-$', i):
+        elif re.match('^\\d+-$', i):
             nums = [int(n) for n in i.split("-") if n.isdigit()]
             nums.append(len(options))
             inputs = insert_range(i, inputs, options, nums)
-        elif re.match('^-\d+$', i):
+        elif re.match('^-\\d+$', i):
             nums = [int(n) for n in i.split("-") if n.isdigit()]
             nums.insert(0, 1)
             inputs = insert_range(i, inputs, options, nums)
