@@ -2,18 +2,18 @@
 # ISC License (ISCL) - see LICENSE file for details.
 
 import os
+from argparse import ArgumentParser
+from columns import prtcols
+from .chopt import chopt
 
 
 def getargs():
-    from argparse import ArgumentParser
     parser = ArgumentParser(description='Choose Options from a list.')
     parser.add_argument("options", nargs='+', help="Options for the menu.")
     return parser.parse_args()
 
 
 def main():
-    from .chopt import chopt
-    from columns import prtcols
     args = getargs()
     options = args.options
     chosen = chopt(options)
